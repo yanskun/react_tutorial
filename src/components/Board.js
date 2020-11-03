@@ -2,11 +2,26 @@ import React, { Component } from 'react';
 import Square from './Square'
 
 class Board extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      currentSquare: null
+    }
+  }
+
+  handleClick(i) {
+    this.setState({
+      currentSquare: i
+    })
+    this.props.onClick(i)
+  }
+
   renderSquare(i) {
     return (
       <Square
         value={this.props.squares[i]}
-        onClick={() => this.props.onClick(i)}
+        isBold={this.state.currentSquare === i}
+        onClick={() => this.handleClick(i)}
       />
     );
   }
