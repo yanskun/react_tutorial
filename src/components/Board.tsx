@@ -1,27 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Square from './Square'
 
-class Board extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      currentSquare: null
-    }
-  }
+interface BoardProps {
+	squares: Array<string>,
+	onClick: Function
+}
 
-  handleClick(i) {
-    this.setState({
-      currentSquare: i
-    })
-    this.props.onClick(i)
-  }
-
-  renderSquare(i) {
+class Board extends React.Component<BoardProps> {
+  renderSquare(i: number) {
     return (
       <Square
         value={this.props.squares[i]}
-        isBold={this.state.currentSquare === i}
-        onClick={() => this.handleClick(i)}
+        onClick={() => this.props.onClick(i)}
       />
     );
   }

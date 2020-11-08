@@ -1,4 +1,4 @@
-function calculateWinner(squares) {
+function calculateWinner(squares: Array<number>) {
   const lines = [
     [0, 1, 2],
     [3, 4, 5],

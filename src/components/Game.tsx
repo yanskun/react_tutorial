@@ -1,11 +1,18 @@
-import React, { Component } from 'react';
-import calculateWinner from '../composable/judge'
+import React from 'react';
 import Board from './Board'
+import calculateWinner from '../composable/judge'
 
-class Game extends Component {
-  handleClick(i) {
+interface GameProps {}
+interface GameState {
+	history: Array<Object>,
+	stepNumber: number,
+	xIsNext: boolean
+}
+
+class Game extends React.Component<GameProps, GameState> {
+  handleClick(i: number) {
     const history = this.state.history.slice(0, this.state.stepNumber + 1);
-    const current = history[history.length - 1];
+    const current: any = history[history.length - 1];
     const squares = current.squares.slice();
 
     // 勝者が決まっている or 既に埋まっている
@@ -24,14 +31,14 @@ class Game extends Component {
     })
   }
 
-  jumpTo(step) {
+  jumpTo(step: number) {
     this.setState({
       stepNumber: step,
       xIsNext: (step % 2) === 0
     })
   }
 
-  constructor(props) {
+  constructor(props: GameState) {
     super(props);
     this.state = {
       history: [{
@@ -44,10 +51,10 @@ class Game extends Component {
 
   render() {
     const history = this.state.history;
-    const current = history[this.state.stepNumber];
+    const current: any = history[this.state.stepNumber];
     const winner = calculateWinner(current.squares);
 
-    const moves = history.map((step, move) => {
+    const moves = history.map((_: any, move: number) => {
       const desc = move ?
         'Go to move #' + move :
         'Go to game start';
@@ -74,7 +81,7 @@ class Game extends Component {
         <div className="game-board">
           <Board
             squares={current.squares}
-            onClick={(i) => this.handleClick(i)}
+            onClick={(i: number) => this.handleClick(i)}
           />
         </div>
         <div className="game-info">
