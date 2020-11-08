@@ -4,9 +4,9 @@ import calculateWinner from '../composable/judge'
 
 interface GameProps {}
 interface GameState {
-	history: Array<Object>,
-	stepNumber: number,
-	xIsNext: boolean
+  history: Array<Object>,
+  stepNumber: number,
+  xIsNext: boolean
 }
 
 class Game extends React.Component<GameProps, GameState> {

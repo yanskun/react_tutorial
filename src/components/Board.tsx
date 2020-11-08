@@ -2,8 +2,8 @@ import React from 'react';
 import Square from './Square'
 
 interface BoardProps {
-	squares: Array<string>,
-	onClick: Function
+  squares: Array<string>,
+  onClick: Function
 }
 
 class Board extends React.Component<BoardProps> {
